@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1">
+  <form>
+    <block>
+      <prompt>Welcome to NTFPs. Press 1 for NTFPs Information, Press 2 for Buying NTFPs , Press 3 to Learn More.</prompt>
+      <field name="menu_choice">
+        <prompt></prompt>
+        <grammar root="menu_choices">
+          <rule id="1">1</rule>
+          <rule id="2">2</rule>
+          <rule id="3">3</rule>
+        </grammar>
+      </field>
+    </block>
+    <filled>
+      <if cond="menu_choice == '1'">
+        <prompt>You have chosen NTFPs Information.</prompt>
+        <!-- add code to NTFPs Information -->
+      </if>
+      <elseif cond="menu_choice == '2'">
+        <prompt>You have chosen Buying NTFPs.</prompt>
+        <!-- add code to Buying NTFPs -->
+      </elseif>
+      <elseif cond="menu_choice == '3'">
+        <prompt>You have chosen Learn More.</prompt>
+        <!-- add code to add additional information -->
+      </elseif>
+      <else/>
+    </filled>
+  </form>
+</vxml>
