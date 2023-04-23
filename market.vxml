@@ -17,7 +17,7 @@
    <form id="A">
      <field>
        <prompt>
-	 Alice wants to sell 100 A, 1 dollar each.
+	 Alice wants to sell 20 kilograms local mushrooms, 1 dollar per kilograms.
 	 Press 1 to buy, press 2 back to the item menu.
        </prompt>
      </field>
@@ -26,7 +26,7 @@
    <form id="B">
      <field>
        <prompt>
-	 Bob wants to sell 300 B, 2 dollars each.
+	 Bob wants to sell 100 kilograms oils, 5 dollars per kilograms.
          Press 1 to buy, press 2 back to the item menu.
        </prompt>
      </field>
