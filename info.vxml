@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<vxml version="2.1">
+  <form id="ntfp-info">
+  <!-- Demo version of the info page, will be more systematic in the future -->
+    <block>
+      <prompt>Hello, this is the introduction of NTFPs</prompt>
+      <pause length="5s"/>
+      <prompt>
+      Nutrition and health are fundamental pillars of human development across 
+      the entire life-span. The potential role of non-timber forest products (NTFPs) 
+      in improving nutrition and health and reduction of poverty has been recognized 
+      in recent years. 
+      </prompt>
+    </block>
+    <field name="ntfp_choice">
+      <prompt>Press 1 to hear more about NTFPs, or 2 to return to the main menu.</prompt>
+      <grammar root="ntfp_choices">
+        <rule id="1">1</rule>
+        <rule id="2">2</rule>
+      </grammar>
+    </field>
+    <filled>
+      <if cond="ntfp_choice == '1'">
+        <prompt>
+        NTFPs continue to be an important source of household food security, 
+        nutrition, and health. Despite their significant contribution to food security, 
+        nutrition, and sustainable livelihoods, these tend to be overlooked by policy-makers.
+        </prompt>
+      </if>
+      <elseif cond="ntfp_choice == '2'">
+        <goto next="main.vxml"/>
+      </elseif>
+      <else/>
+    </filled>
+  </form>
+</vxml>
