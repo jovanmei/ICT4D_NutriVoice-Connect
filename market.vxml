@@ -4,7 +4,7 @@
 
    <menu>
      <prompt>
-	Welcome to NTFPs market!
+	    Welcome to NTFPs market!
         For details of A, press 1.
         For details of B, press 2.
         Go back to the main menu, press 0.
@@ -17,8 +17,8 @@
    <form id="A">
      <field>
        <prompt>
-	 Alice wants to sell 100 A, 1 dollar each.
-	 Press 1 to buy, press 2 back to the item menu.
+          Alice wants to sell 100 A, 1 dollar each.
+          Press 1 to buy, press 2 back to the item menu.
        </prompt>
      </field>
    </form>
@@ -26,8 +26,8 @@
    <form id="B">
      <field>
        <prompt>
-	 Bob wants to sell 300 B, 2 dollars each.
-         Press 1 to buy, press 2 back to the item menu.
+	      Bob wants to sell 300 B, 2 dollars each.
+          Press 1 to buy, press 2 back to the item menu.
        </prompt>
      </field>
    </form>
