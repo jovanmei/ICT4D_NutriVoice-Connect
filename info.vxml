@@ -21,6 +21,17 @@
     </field>
     <filled>
       <if cond="ntfp_choice == '1'">
+        
+        <!-- record function, still developing -->
+
+        <!-- <record name="myRecording" beep="true" maxtime="30s" finalsilence="5s">
+          <prompt>Please speak your message after the beep.</prompt>
+        </record>
+        <prompt>
+          You recorded the following message:
+        </prompt>
+        <audio src="myRecording.wav"/> -->
+
         <prompt>
         NTFPs continue to be an important source of household food security, 
         nutrition, and health. Despite their significant contribution to food security, 
