@@ -4,30 +4,30 @@
 
    <menu>
      <prompt>
-	    Welcome to NTFPs market!
-        For details of A, press 1.
-        For details of B, press 2.
+	Welcome to NTFPs market!
+        For details of mushrooms, press 1.
+        For details of oils, press 2.
         Go back to the main menu, press 0.
      </prompt>
-     <choice dtmf="1" next="#A"/>
-     <choice dtmf="2" next="#B"/>
+     <choice dtmf="1" next="#mushroom"/>
+     <choice dtmf="2" next="#oil"/>
      <choice dtmf="1" next="http://webhosting.voxeo.net/208885/www/menu_en.vxml"/>
    </menu>
 
-   <form id="A">
+   <form id="mushroom">
      <field>
        <prompt>
-          Alice wants to sell 100 A, 1 dollar each.
-          Press 1 to buy, press 2 back to the item menu.
+	    Alice wants to sell 10 kilograms local mushrooms, 1 dollar per kilogram.
+	    Press 1 to buy, press 2 back to the item menu.
        </prompt>
      </field>
    </form>
 
-   <form id="B">
+   <form id="oil">
      <field>
        <prompt>
-	      Bob wants to sell 300 B, 2 dollars each.
-          Press 1 to buy, press 2 back to the item menu.
+	     Bob wants to sell 20 kilograms oils, 2 dollars per kilogram.
+         Press 1 to buy, press 2 back to the item menu.
        </prompt>
      </field>
    </form>
