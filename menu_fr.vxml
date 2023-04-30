@@ -5,13 +5,17 @@
     <menu>
         <property name="inputmodes" value="dtmf"/>
         <prompt>
-            Dear, Here is the English version of the main menu.
+            <!-- Dear, Here is the English version of the main menu. -->
+            <audio src="intro.mp3"></audio>
             <break time="500"/>
-            For NTFPs markets, please press 1.
+            <!-- For NTFPs markets, please press 1. -->
+            <audio src="choose_market.mp3"></audio>
             <break time="500"/>
-            For NTFPs information, please press 2.
+            <!-- For NTFPs information, please press 2. -->
+            <audio src="choose_info.mp3"></audio>
             <break time="500"/>
-            To end the call, Please press the asterisk key.
+            <!-- To end the call, Please press the asterisk key. -->
+            <audio src="choose_end.mp3"></audio>
         </prompt>
         <choice dtmf="1" next="http://webhosting.voxeo.net/208143/www/market.xml"></choice>
         <choice dtmf="2" next="http://webhosting.voxeo.net/208143/www/info.xml"></choice>
