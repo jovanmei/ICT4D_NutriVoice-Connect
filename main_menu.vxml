@@ -5,17 +5,17 @@
     <menu>
         <property name="inputmodes" value="dtmf"/>
         <prompt>
-            Dear friends, Welcome to Nous Vote!
+            Welcome to NTFPs system!
             <break time="1000"/>
             For English service, please press 1.
             <break time="500"/>
-            <audio src="https://web1230012.000webhostapp.com/menu_main_fr/menu_fr.wav"/>
+            <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/main_french.wav"/>
         <!-- For French service, please press 2. -->
             <break time="1000"/>
             To end the call, Please press the asterisk key.
         </prompt>
-        <choice dtmf="1" next="http://webhosting.voxeo.net/208143/www/menu_en.xml"></choice>
-        <choice dtmf="2" next="http://webhosting.voxeo.net/208143/www/menu_fr.xml"></choice>
+        <choice dtmf="1" next="http://webhosting.voxeo.net/208885/www/menu_en.xml"></choice>
+        <choice dtmf="2" next="http://webhosting.voxeo.net/208885/www/menu_fr.xml"></choice>
         <choice dtmf="*" event="end"></choice>
         
     </menu>
