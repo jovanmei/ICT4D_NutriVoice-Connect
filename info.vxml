@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <vxml version="2.1">
- <property name="inputmodes" value="dtmf"/>
+  <property name="inputmodes" value="dtmf"/>
 
-   <menu>
-     <prompt>
+  <menu>
+    <prompt>
 	    Welcome to NTFPs information!
-        For the introduction of NTFPs, press 1.
-        Go back to the main menu, press 0.
-     </prompt>
-     <choice dtmf="1" next="#A"/>
-     <choice dtmf="1" next="http://webhosting.voxeo.net/208885/www/menu_en.vxml"/>
-   </menu>
+      For the introduction of NTFPs, press 1.
+      Go back to the main menu, press 0.
+    </prompt>
+    <choice dtmf="1" next="#A"/>
+    <choice dtmf="0" next="http://webhosting.voxeo.net/208885/www/menu_en.vxml"/>
+  </menu>
 
-   <form id="A">
-     <field>
-       <prompt>
+  <form id="A">
+    <field>
+      <prompt>
         Nutrition and health are fundamental pillars of human development across 
         the entire life-span. The potential role of non-timber forest products (NTFPs) 
         in improving nutrition and health and reduction of poverty has been recognized 
-        in recent years. 
-       </prompt>
-     </field>
-   </form>
+        in recent years.
+      </prompt>
+    </field>
+  </form>
 
+  <!-- futher info should be added in the futher -->
 </vxml>
