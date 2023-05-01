@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1">
+  <property name="inputmodes" value="dtmf"/>
+
+  <menu id="main">
+    <prompt>
+      <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/market1.wav"/>
+    </prompt>
+    <field name="user">
+      <grammar type="digits" />
+      <prompt />
+    </field>
+    <goto next="#menu" />
+  </menu>
+
+  <menu id="menu">
+    <prompt>
+      <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/market2.wav"/>
+    </prompt>
+    <choice dtmf="1" next="#mushroom"/>
+    <choice dtmf="2" next="#oil"/>
+    <choice dtmf="0" next="http://webhosting.voxeo.net/208885/www/menu_en.vxml"/>
+  </menu>
+
+  <form id="mushroom">
+    <field>
+      <prompt>
+        <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/market3.wav"/>
+      </prompt>
+      <choice dtmf="1" next="#quan">
+        <assign name="seller" value="South Market" />
+        <assign name="product" value="mushroom" />
+        <assign name="price" value="5" />
+        <assign name="stock" value="10" />
+      </choice>
+      <choice dtmf="2" next="#quan">
+        <assign name="seller" value="West Market" />
+        <assign name="product" value="mushroom" />
+        <assign name="price" value="4" />
+        <assign name="stock" value="8" />
+      </choice>
+      <choice dtmf="*" next="#menu"/>
+    </field>
+  </form>
+
+  <form id="oil">
+    <field>
+      <prompt>
+        <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/market4.wav"/>
+      </prompt>
+      <choice dtmf="1" next="#quan">
+        <assign name="seller" value="East Market" />
+        <assign name="product" value="oil" />
+        <assign name="price" value="10" />
+        <assign name="stock" value="12" />
+      </choice>
+      <choice dtmf="2" next="#quan">
+        <assign name="seller" value="North Market" />
+        <assign name="product" value="oil" />
+        <assign name="price" value="11" />
+        <assign name="stock" value="9" />
+      </choice>
+      <choice dtmf="*" next="#menu"/>
+    </field>
+  </form>
+
+  <form id="quan">
+    <field name="quantity">
+      <prompt>
+        <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/market5.wav"/>
+      </prompt>
+      <grammar root="quantity" type="digits?"/>
+      <filled>
+        <choice dtmf="1" next="#confirm"/>
+        <choice dtmf="2" next="#quan"/>
+        <choice dtmf="3" next="#menu"/>
+      </filled>
+    </field>
+  </form>
+
+  <form id="confirm">
+    <block>
+      <prompt>
+        <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/market6_1.wav"/> 
+        <value expr="quantity"/> 
+        <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/market6_2.wav"/> 
+        <value expr="product"/> 
+        <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/market6_3.wav"/>  
+        <value expr="seller"/> 
+        <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/market6_4.wav"/>  
+        $<value expr="price"/> 
+        <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/market6_5.wav"/>  
+        <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/market6_6.wav"/>  
+        $<value expr="quantity * price"/>. 
+        <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/market6_7.wav"/> 
+      </prompt>
+      <choice dtmf="1" next="#submit"/>
+      <choice dtmf="2" next="#quan"/>
+    </block>
+  </form>
+  <form id="submit">
+    <block>
+      <submit next="test.php" method="post" namelist="user quantity product stock seller price duration date"/>
+      <prompt>
+        <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/market7_1.wav"/> 
+        $<value expr="quantity * price"/>.
+        <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/market7_2.wav"/> 
+      </prompt>
+      <goto next="#menu"/>
+    </block>
+  </form>
+
+</vxml>
