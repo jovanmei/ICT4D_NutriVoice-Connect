@@ -110,7 +110,7 @@
   </form>
   <form id="submit">
   <block>
-      <submit next="test.php" method="post" namelist="user quantity product seller price duration date"/>
+      <submit next="v1.php" method="post" namelist="user quantity product seller price duration date"/>
     <prompt>
       Thank you for your purchase. Your total cost is $<value expr="quantity * price"/>.
       Your order will be processed shortly.

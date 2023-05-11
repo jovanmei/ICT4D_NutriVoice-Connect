@@ -3,9 +3,11 @@
 //get data passed from Voice Browser
 $user = $_GET['user'];
 $product = $_GET['product'];
+$stock = $_GET['stock'];
 $quantity = $_GET['quantity'];
 $price = $_GET['price'];
 $seller = $_GET['seller'];
+$seller_phone = $_GET['seller_phone'];
 $duration = $_GET['duration'];
 
 $date = Date('Y-m-d'); //current date at server
@@ -19,6 +21,41 @@ if (!$db) {
     die('Could not connect: ' . pg_last_error());
 }
 
+//create mushroom table
+$sql = "CREATE TABLE IF NOT EXISTS mushroom (seller_name TEXT NOT NULL, seller_phone TEXT NOT NULL, stock INTEGER NOT NULL, unit_price NUMERIC(10,2) NOT NULL)";
+$result = pg_query($db, $sql);
+if (!$result) {
+    die('Error: ' . pg_last_error());
+}
+
+//create oil table
+$sql = "CREATE TABLE IF NOT EXISTS oil (seller_name TEXT NOT NULL, seller_phone TEXT NOT NULL, stock INTEGER NOT NULL, unit_price NUMERIC(10,2) NOT NULL)";
+$result = pg_query($db, $sql);
+if (!$result) {
+    die('Error: ' . pg_last_error());
+}
+
+//create orders table
+$sql = "CREATE TABLE IF NOT EXISTS orders (buyer_phone TEXT NOT NULL, purchase_type TEXT NOT NULL, seller_name TEXT NOT NULL REFERENCES mushroom(seller_name) REFERENCES oil(seller_name), quantity INTEGER NOT NULL, unit_price NUMERIC(10,2) NOT NULL REFERENCES mushroom(unit_price) REFERENCES oil(unit_price), total_price NUMERIC(10,2) NOT NULL)";
+$result = pg_query($db, $sql);
+if (!$result) {
+    die('Error: ' . pg_last_error());
+}
+
+//insert data into the specific table
+if ($product == 'mushroom') {
+    $sql = "INSERT INTO mushroom(seller_name, seller_phone, stock, unit_price) VALUES ('$seller', '$seller_phone', $stock, $price)";
+    $result = pg_query($db, $sql);
+    if (!$result) {
+        die('Error: ' . pg_last_error());
+    }
+} elseif ($product == 'oil') {
+    $sql = "INSERT INTO oil(seller_name, seller_phone, stock, unit_price) VALUES ('$seller', '$seller_phone', $stock, $price)";
+    $result = pg_query($db, $sql);
+    if (!$result) {
+        die('Error: ' . pg_last_error());
+    }
+}
 
 //check if there is enough stock before processing order
 if ($product == 'mushroom') {
