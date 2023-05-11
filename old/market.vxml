@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1">
+<property name="inputmodes" value="dtmf"/>
+
+  <menu id="main">
+    <prompt>
+	      Welcome to NTFPs market! 
+        Please enter your phone number followed by the pound sign.
+    </prompt>
+    <field name="user">
+      <grammar type="digits" />
+      <prompt />
+    </field>
+    <goto next="#menu" />
+  </menu>
+
+  <menu id="menu">
+    <prompt>
+	    For details of mushrooms, press 1.
+      For details of oils, press 2.
+      To go back to the main menu, press 0.
+    </prompt>
+    <choice dtmf="1" next="#mushroom"/>
+    <choice dtmf="2" next="#oil"/>
+    <choice dtmf="0" next="http://webhosting.voxeo.net/208885/www/menu_en.vxml"/>
+  </menu>
+
+  <form id="mushroom">
+    <field>
+      <prompt>
+	    South Market now have 10 kilogram, 5 dollar per kilogram.
+      West Market now have 8 kilogram, 4 dollar per kilogram. 
+	    Press 1 for buying South Market, 
+      press 2 for buying West Market,
+      press star back to the item menu.
+      </prompt>
+      <choice dtmf="1" next="#quan">
+        <assign name="seller" value="South Market" />
+        <assign name="product" value="mushroom" />
+        <assign name="price" value="5" />
+        <assign name="stock" value="10" />
+      </choice>
+      <choice dtmf="2" next="#quan">
+        <assign name="seller" value="West Market" />
+        <assign name="product" value="mushroom" />
+        <assign name="price" value="4" />
+        <assign name="stock" value="8" />
+      </choice>
+      <choice dtmf="*" next="#menu"/>
+    </field>
+  </form>
+
+  <form id="oil">
+    <field>
+      <prompt>
+      East Market now have 12 kilogram, 10 dollar per kilogram.
+      North Market now have 9 kilogram, 11 dollar per kilogram. 
+	    Press 1 for buying East Market, 
+      press 2 for buying North Market,
+      press star back to the item menu.
+      </prompt>
+      <choice dtmf="1" next="#quan">
+        <assign name="seller" value="East Market" />
+        <assign name="product" value="oil" />
+        <assign name="price" value="10" />
+        <assign name="stock" value="12" />
+      </choice>
+      <choice dtmf="2" next="#quan">
+        <assign name="seller" value="North Market" />
+        <assign name="product" value="oil" />
+        <assign name="price" value="11" />
+        <assign name="stock" value="9" />
+      </choice>
+      <choice dtmf="*" next="#menu"/>
+    </field>
+  </form>
+
+  <form id="quan">
+    <field name="quantity">
+      <prompt>
+	    Thanks for your choosing, how many kilograms do you want to buy?
+      Press 1 to confirm, press 2 to return to the item menu, press 3 to return to the main menu.
+      </prompt>
+      <grammar root="quantity" type="digits?"/>
+      <filled>
+        <choice dtmf="1" next="#confirm"/>
+        <choice dtmf="2" next="#quan"/>
+        <choice dtmf="3" next="#menu"/>
+      </filled>
+    </field>
+  </form>
+
+  <form id="confirm">
+    <block>
+      <prompt>
+        You want to buy <value expr="quantity"/> kilograms of <value expr="product"/> from <value expr="seller"/> at $<value expr="price"/> per kilogram. 
+        Your total cost is $<value expr="quantity * price"/>. Is that correct?
+        Press 1 to confirm, press 2 to return to the quantity menu.
+      </prompt>
+      <choice dtmf="1" next="#submit"/>
+      <choice dtmf="2" next="#quan"/>
+    </block>
+  </form>
+  <form id="submit">
+    <block>
+      <submit next="test.php" method="post" namelist="user quantity product stock seller price duration date"/>
+      <prompt>
+        Thank you for your purchase. Your total cost is $<value expr="quantity * price"/>.
+        Your order will be processed shortly.
+      </prompt>
+      <goto next="#menu"/>
+    </block>
+  </form>
+
+</vxml>
