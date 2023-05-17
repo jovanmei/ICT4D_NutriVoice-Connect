@@ -4,9 +4,8 @@
 $user = $_GET['user'];
 $product = $_GET['product'];
 $quantity = $_GET['quantity'];
-$price = $_GET['price'];
 $seller = $_GET['seller'];
-$duration = $_GET['duration'];
+$price = $_GET['price'];
 
 $date = Date('Y-m-d'); //current date at server
 $time = time(); //current time (in seconds format)
@@ -63,7 +62,7 @@ if (!$update_result) {
 
 $total_price = $quantity * $price;
 
-$order_sql = "INSERT INTO orders (buyer_phone, purchase_type, seller_name, quantity, unit_price, total_price) VALUES ('$user', '$product', '$seller', $quantity, $price, $total_price)";
+$order_sql = "INSERT INTO orders (buyer_phone, purchase_type, seller_name, quantity, unit_price, total_price, date) VALUES ('$user', '$product', '$seller', $quantity, $price, $total_price, Now())";
 
 $result = pg_query($db, $order_sql);
 

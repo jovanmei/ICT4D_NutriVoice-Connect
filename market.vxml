@@ -77,11 +77,11 @@
   </form>
 
   <form id="quan">
-    <field name="quantity">
+    <field name="quantity" maxDigits="2">
       <prompt>
       Thanks for choosing. Please enter the number of kilograms you want to buy, followed by the pound sign.
       </prompt>
-      <grammar root="quantity" type="dtmf"/>
+      <grammar root="quantity" type="dtmf" pattern="^\d{1,2}$"/>
       <noinput>
         <prompt>Please enter the number of kilograms you want to buy, followed by the pound sign.</prompt>
       </noinput>
@@ -110,7 +110,7 @@
   </form>
   <form id="submit">
   <block>
-      <submit next="v1.php" method="post" namelist="user quantity product seller price duration date"/>
+      <submit next="http://ict4d.rf.gd/v1.php" method="post" namelist="user quantity product seller price"/>
     <prompt>
       Thank you for your purchase. Your total cost is $<value expr="quantity * price"/>.
       Your order will be processed shortly.
