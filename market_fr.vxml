@@ -7,7 +7,7 @@
       <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/market1.wav"/>
     </prompt>
     <field name="user">
-      <grammar type="digits" />
+      <grammar type="dtmf" />
       <prompt />
     </field>
     <goto next="#menu" />
@@ -28,16 +28,14 @@
         <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/market3.wav"/>
       </prompt>
       <choice dtmf="1" next="#quan">
-        <assign name="seller" value="South Market" />
+        <assign name="seller" value="North Market" />
         <assign name="product" value="mushroom" />
-        <assign name="price" value="5" />
-        <assign name="stock" value="10" />
+        <assign name="price" value="10" />
       </choice>
       <choice dtmf="2" next="#quan">
-        <assign name="seller" value="West Market" />
+        <assign name="seller" value="South Market" />
         <assign name="product" value="mushroom" />
-        <assign name="price" value="4" />
-        <assign name="stock" value="8" />
+        <assign name="price" value="8" />
       </choice>
       <choice dtmf="*" next="#menu"/>
     </field>
@@ -51,25 +49,23 @@
       <choice dtmf="1" next="#quan">
         <assign name="seller" value="East Market" />
         <assign name="product" value="oil" />
-        <assign name="price" value="10" />
-        <assign name="stock" value="12" />
+        <assign name="price" value="13" />
       </choice>
       <choice dtmf="2" next="#quan">
-        <assign name="seller" value="North Market" />
+        <assign name="seller" value="West Market" />
         <assign name="product" value="oil" />
-        <assign name="price" value="11" />
-        <assign name="stock" value="9" />
+        <assign name="price" value="15" />
       </choice>
       <choice dtmf="*" next="#menu"/>
     </field>
   </form>
 
   <form id="quan">
-    <field name="quantity">
+    <field name="quantity" maxDigits="2">
       <prompt>
         <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/market5.wav"/>
       </prompt>
-      <grammar root="quantity" type="digits?"/>
+      <grammar root="quantity" type="dtmf" pattern="^\d{1,2}$"/>
       <filled>
         <choice dtmf="1" next="#confirm"/>
         <choice dtmf="2" next="#quan"/>
@@ -100,7 +96,7 @@
   </form>
   <form id="submit">
     <block>
-      <submit next="test.php" method="post" namelist="user quantity product stock seller price duration date"/>
+      <submit next="http://ict4d.rf.gd/v1.php" method="post" namelist="user quantity product seller price"/>
       <prompt>
         <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/market7_1.wav"/> 
         $<value expr="quantity * price"/>.
