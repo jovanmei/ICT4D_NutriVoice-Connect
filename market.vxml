@@ -37,24 +37,44 @@
     <choice dtmf="0" next="http://webhosting.voxeo.net/208885/www/menu_en.vxml"/>
   </menu>
 
-<catch event="mushroom_selected"> 
+<catch event="south_mushroom_selected"> 
+<prompt>
+.
+</prompt>
+<assign name="seller" expr="_message"/>
+<assign name="product" expr="'mushroom'"/>
+<assign name="price" expr="'8'"/>
+<goto next="#quan"/>
+</catch>
+
+<catch event="north_mushroom_selected"> 
 <prompt>
 .
 </prompt>
 <assign name="seller" expr="_message"/>
 <assign name="product" expr="'mushroom'"/>
 <assign name="price" expr="'10'"/>
-<goto next="#details"/>
+<goto next="#quan"/>
 </catch>
 
-<catch event="oil_selected"> 
+<catch event="east_oil_selected"> 
 <prompt>
 .
 </prompt>
 <assign name="seller" expr="_message"/>
 <assign name="product" expr="'oil'"/>
-<assign name="price" expr="'12'"/>
-<goto next="#details"/>
+<assign name="price" expr="'13'"/>
+<goto next="#quan"/>
+</catch>
+
+<catch event="west_oil_selected"> 
+<prompt>
+.
+</prompt>
+<assign name="seller" expr="_message"/>
+<assign name="product" expr="'oil'"/>
+<assign name="price" expr="'15'"/>
+<goto next="#quan"/>
 </catch>
 
 <!-- end event-->
@@ -67,8 +87,8 @@
       <prompt>
 	    North Market now sell 10 dollar per kilogram. 
       South Market now sell 8 dollar per kilogram.
-	    Press 1 for buying South Market, 
-      press 2 for buying West Market,
+	    Press 1 for buying North Market, 
+      press 2 for buying South Market,
       press star back to the item menu.
       </prompt>
       <!-- <choice event="product_selected" dtmf="1" next="#quan">
@@ -76,8 +96,8 @@
       <choice dtmf="2" next="#quan">
       </choice> -->
       <choice dtmf="*" next="#menu"/>
-      <choice event="mushroom_selected" dtmf="1" message="North Market">North Market</choice>
-      <choice event="mushroom_selected" dtmf="2" message="South Market">South Market</choice>
+      <choice event="north_mushroom_selected" dtmf="1" message="North Market">North Market</choice>
+      <choice event="south_mushroom_selected" dtmf="2" message="South Market">South Market</choice>
   </menu>
 
   <menu id="oil">
@@ -89,8 +109,8 @@
       press 2 for buying West Market,
       press star back to the item menu.
       </prompt>
-      <choice event="oil_selected" dtmf="1" message="East Market">East Market</choice>
-      <choice event="oil_selected" dtmf="2" message="West Market">West Market</choice>
+      <choice event="east_oil_selected" dtmf="1" message="East Market">East Market</choice>
+      <choice event="west_oil_selected" dtmf="2" message="West Market">West Market</choice>
       <choice dtmf="*" next="#menu"/>
   </menu>
 
