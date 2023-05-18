@@ -34,7 +34,7 @@
     </prompt>
     <choice dtmf="1" next="#mushroom"/>
     <choice dtmf="2" next="#oil"/>
-    <choice dtmf="0" next="http://webhosting.voxeo.net/208885/www/menu_en.vxml"/>
+    <choice dtmf="0" next="https://ict4d-vxml-tester-2023.s3.amazonaws.com/media/uploads/ruin/95/menu_en.vxml"/>
   </menu>
 
 <catch event="south_mushroom_selected"> 

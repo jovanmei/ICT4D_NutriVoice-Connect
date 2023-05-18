@@ -15,8 +15,8 @@
             <break time="1000s"/>
             To end the call, Please press the asterisk key.
         </prompt>
-        <choice dtmf="1" next="https://ict4d-vxml-tester-2023.s3.amazonaws.com/media/uploads/jovanmei/53/menu_en.vxml"></choice>
-        <choice dtmf="2" next="menu_fr.xml"></choice>
+        <choice dtmf="1" next="https://ict4d-vxml-tester-2023.s3.amazonaws.com/media/uploads/ruin/95/menu_en.vxml"></choice>
+        <choice dtmf="2" next="https://ict4d-vxml-tester-2023.s3.amazonaws.com/media/uploads/ruin/95/menu_fr.vxml"></choice>
         <choice dtmf="*" event="end"></choice>
         
     </menu>
