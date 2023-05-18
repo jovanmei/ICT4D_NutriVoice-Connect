@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1"
+  xmlns="http://www.w3.org/2001/vxml">
+
+    <menu>
+        <property name="inputmodes" value="dtmf"/>
+        <prompt>
+            <!-- Dear, Here is the Frencg version of the main menu. -->
+            <audio src="https://ict4d-vxml-tester-2023.s3.amazonaws.com/media/uploads/ruin/95/menu1.wav"/>
+            <break time="500s"/>
+            <!-- For NTFPs markets, please press 1. -->
+            <audio src="https://ict4d-vxml-tester-2023.s3.amazonaws.com/media/uploads/ruin/95/menu2.wav"/>
+            <break time="500s"/>
+            <!-- For NTFPs information, please press 2. -->
+            <audio src="https://ict4d-vxml-tester-2023.s3.amazonaws.com/media/uploads/ruin/95/menu3.wav"/>
+            <break time="500s"/>
+            <!-- To end the call, Please press the asterisk key. -->
+            <audio src="https://ict4d-vxml-tester-2023.s3.amazonaws.com/media/uploads/ruin/95/menu4.wav"/>
+        </prompt>
+        <choice dtmf="1" next=" https://ict4d-vxml-tester-2023.s3.amazonaws.com/media/uploads/ruin/95/market_fr.vxml"></choice>
+        <choice dtmf="2" next=" https://ict4d-vxml-tester-2023.s3.amazonaws.com/media/uploads/ruin/95/info_fr.vxml"></choice>
+        <choice dtmf="*" event="end"></choice>
+        
+    </menu>
+
+</vxml>
