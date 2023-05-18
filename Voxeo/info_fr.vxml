@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1"
+  xmlns="http://www.w3.org/2001/vxml">
+  <property name="inputmodes" value="dtmf"/>
+
+  <menu>
+    <prompt>
+	    <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/info1.wav"/>
+    </prompt>
+    <choice dtmf="1" next="#A"/>
+    <choice dtmf="0" next="http://webhosting.voxeo.net/208885/www/menu_en.vxml"/>
+  </menu>
+
+  <form id="A">
+    <field>
+      <prompt>
+        <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/info2.wav"/>
+      </prompt>
+    </field>
+  </form>
+
+  <!-- futher info should be added in the futher -->
+</vxml>
