@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vxml version="2.1">
+<!-- <vxml version="2.1"> -->
+<vxml version="2.1"
+  xmlns="http://www.w3.org/2001/vxml">
+
   <property name="inputmodes" value="dtmf"/>
 
-  <menu id="main">
+ <form id="user"> 
+  <field name="user" type="number"> 
     <prompt>
 	      Welcome to NTFPs market! 
     </prompt>
-    <field name="user">
-      <grammar type="dtmf" />
       <prompt>Please enter your selection using the keypad on your phone.</prompt>
       <noinput>
         <prompt>Sorry, I didn't get anything. Please enter your selection using the keypad on your phone.</prompt>
@@ -15,9 +17,14 @@
       <nomatch>
         <prompt>Sorry, I didn't understand that. Please enter a valid selection using the keypad on your phone.</prompt>
       </nomatch>
+      <filled>
+      <assign name="user" expr="user"/>
+      </filled>
     </field>
+    <filled>
     <goto next="#menu" />
-  </menu>
+    </filled>
+  </form>  
 
   <menu id="menu">
     <prompt>
@@ -30,58 +37,59 @@
     <choice dtmf="0" next="http://webhosting.voxeo.net/208885/www/menu_en.vxml"/>
   </menu>
 
-  <form id="mushroom">
-    <field>
+<catch event="product_selected"> 
+<prompt>
+.
+</prompt>
+<assign name="seller" expr="_message"/>
+<assign name="product" expr="'mush'"/>
+<assign name="price" expr="'10'"/>
+<goto next="#details"/>
+</catch>
+
+<!-- end event-->
+<catch event="end"> 
+ <disconnect/> 
+</catch>
+
+  <menu id="mushroom">
+  <property name="inputmodes" value="dtmf"/>
       <prompt>
-	    North Market now sell 10 dollar per kilogram. The seller phone number is +31626483123.
-      South Market now sell 8 dollar per kilogram. The seller phone number is +31626483123.
+	    North Market now sell 10 dollar per kilogram. 
+      South Market now sell 8 dollar per kilogram.
 	    Press 1 for buying South Market, 
       press 2 for buying West Market,
       press star back to the item menu.
       </prompt>
-      <choice dtmf="1" next="#quan">
-        <assign name="seller" value="North Market" />
-        <assign name="product" value="mushroom" />
-        <assign name="price" value="10" />
+      <!-- <choice event="product_selected" dtmf="1" next="#quan">
       </choice>
       <choice dtmf="2" next="#quan">
-        <assign name="seller" value="South Market" />
-        <assign name="product" value="mushroom" />
-        <assign name="price" value="8" />
-      </choice>
+      </choice> -->
       <choice dtmf="*" next="#menu"/>
-    </field>
-  </form>
+      <choice event="product_selected" dtmf="1" message="North Market">North Market</choice>
+      <choice event="product_selected" dtmf="2" message="South Market">South Market</choice>
+  </menu>
 
-  <form id="oil">
-    <field>
+  <menu id="oil">
+  <property name="inputmodes" value="dtmf"/>
       <prompt>
-      East Market now sell 13 dollar per kilogram. The seller phone number is +31626483235.
-      West Market now sell 15 dollar per kilogram. The seller phone number is +31626483235.
+      East Market now sell 13 dollar per kilogram. 
+      West Market now sell 15 dollar per kilogram. 
 	    Press 1 for buying East Market, 
       press 2 for buying West Market,
       press star back to the item menu.
       </prompt>
-      <choice dtmf="1" next="#quan">
-        <assign name="seller" value="East Market" />
-        <assign name="product" value="oil" />
-        <assign name="price" value="13" />
-      </choice>
-      <choice dtmf="2" next="#quan">
-        <assign name="seller" value="West Market" />
-        <assign name="product" value="oil" />
-        <assign name="price" value="15" />
-      </choice>
+      <choice event="product_selected" dtmf="1" message="East Market">East Market</choice>
+      <choice event="product_selected" dtmf="2" message="West Market">West Market</choice>
       <choice dtmf="*" next="#menu"/>
-    </field>
-  </form>
+  </menu>
 
   <form id="quan">
-    <field name="quantity" maxDigits="2">
+      <field name="quantity" type="number">
       <prompt>
       Thanks for choosing. Please enter the number of kilograms you want to buy, followed by the pound sign.
       </prompt>
-      <grammar root="quantity" type="dtmf" pattern="^\d{1,2}$"/>
+      <!-- <grammar root="quantity" type="dtmf" pattern="^\d{1,2}$"/> -->
       <noinput>
         <prompt>Please enter the number of kilograms you want to buy, followed by the pound sign.</prompt>
       </noinput>
@@ -89,16 +97,15 @@
         <prompt>Sorry, I didn't understand that. Please enter the number of kilograms you want to buy, followed by the pound sign.</prompt>
       </nomatch>
       <filled>
-        <prompt>You entered <value expr="quantity"/>. Press 1 to confirm, press 2 to return to the item menu, press 3 to return to the main menu.</prompt>
-        <choice dtmf="1" next="#confirm"/>
-        <choice dtmf="2" next="#quan"/>
-        <choice dtmf="3" next="#menu"/>
+      <assign name="quantity" expr="quantity"/>
       </filled>
     </field>
+    <filled>
+  <goto next="#confirm"/>
+      </filled>
   </form>
 
-  <form id="confirm">
-    <block>
+  <menu id="confirm">
       <prompt>
         You want to buy <value expr="quantity"/> kilograms of <value expr="product"/> from <value expr="seller"/> at $<value expr="price"/> per kilogram. 
         Your total cost is $<value expr="quantity * price"/>. Is that correct?
@@ -106,13 +113,12 @@
       </prompt>
         <choice dtmf="1" next="#submit"/>
         <choice dtmf="2" next="#quan"/>
-    </block>
-  </form>
+  </menu>
   <form id="submit">
   <block>
       <submit next="http://ict4d.rf.gd/v1.php" method="post" namelist="user quantity product seller price"/>
     <prompt>
-      Thank you for your purchase. Your total cost is $<value expr="quantity * price"/>.
+      Thank you for your purchase. Your total cost is $<value expr="quantity * price"/>. The seller phone number is +31626483123.
       Your order will be processed shortly.
     </prompt>
   <goto next="#menu"/>

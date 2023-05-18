@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vxml version="2.1">
+<vxml version="2.1"
+  xmlns="http://www.w3.org/2001/vxml">
 
     <menu>
         <property name="inputmodes" value="dtmf"/>
         <prompt>
             <!-- Dear, Here is the Frencg version of the main menu. -->
             <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/menu1.wav"/>
-            <break time="500"/>
+            <break time="500s"/>
             <!-- For NTFPs markets, please press 1. -->
-            <<audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/menu2.wav"/>
-            <break time="500"/>
+            <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/menu2.wav"/>
+            <break time="500s"/>
             <!-- For NTFPs information, please press 2. -->
             <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/menu3.wav"/>
-            <break time="500"/>
+            <break time="500s"/>
             <!-- To end the call, Please press the asterisk key. -->
             <audio src="http://webhosting.voxeo.net/208885/www/fr_recordings/menu4.wav"/>
         </prompt>
