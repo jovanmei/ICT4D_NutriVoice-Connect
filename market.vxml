@@ -44,6 +44,7 @@
 <assign name="seller" expr="_message"/>
 <assign name="product" expr="'mushroom'"/>
 <assign name="price" expr="'8'"/>
+<assign name="phone" expr="'+31626483123'"/>
 <goto next="#quan"/>
 </catch>
 
@@ -54,6 +55,7 @@
 <assign name="seller" expr="_message"/>
 <assign name="product" expr="'mushroom'"/>
 <assign name="price" expr="'10'"/>
+<assign name="phone" expr="'+31626483124'"/>
 <goto next="#quan"/>
 </catch>
 
@@ -64,6 +66,7 @@
 <assign name="seller" expr="_message"/>
 <assign name="product" expr="'oil'"/>
 <assign name="price" expr="'13'"/>
+<assign name="phone" expr="'+31626483125'"/>
 <goto next="#quan"/>
 </catch>
 
@@ -74,6 +77,7 @@
 <assign name="seller" expr="_message"/>
 <assign name="product" expr="'oil'"/>
 <assign name="price" expr="'15'"/>
+<assign name="phone" expr="'+31626483126'"/>
 <goto next="#quan"/>
 </catch>
 
@@ -148,7 +152,7 @@
   <block>
       <submit next="http://ict4d.rf.gd/v1.php" method="post" namelist="user quantity product seller price"/>
     <prompt>
-      Thank you for your purchase. Your total cost is $<value expr="quantity * price"/>. The seller phone number is +31626483123.
+      Thank you for your purchase. Your total cost is $<value expr="quantity * price"/>. The seller phone number is <value expr="phone"/>.
       Your order will be processed shortly.
     </prompt>
   <goto next="#menu"/>
