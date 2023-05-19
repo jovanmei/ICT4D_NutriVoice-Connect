@@ -119,7 +119,7 @@
   </menu>
 
   <form id="quan">
-      <field name="quantity" type="number">
+      <field name="quan" type="number">
       <prompt>
       Thanks for choosing. Please enter the number of kilograms you want to buy, followed by the pound sign.
       </prompt>
@@ -131,23 +131,26 @@
         <prompt>Sorry, I didn't understand that. Please enter the number of kilograms you want to buy, followed by the pound sign.</prompt>
       </nomatch>
       <filled>
-      <assign name="quantity" expr="quantity"/>
+      <assign name="quantity" expr="quan"/>
       </filled>
     </field>
+
     <filled>
-  <goto next="#confirm"/>
+    <goto next="#conf" />
       </filled>
   </form>
 
-  <menu id="confirm">
+  <menu id="confirm" scope="dialog" dtmf="true">
       <prompt>
-        You want to buy <value expr="quantity"/> kilograms of <value expr="product"/> from <value expr="seller"/> at $<value expr="price"/> per kilogram. 
+        You want to buy <value expr="quantity"/> kilograms of <value expr="product"/> from <value expr="seller"/> at <value expr="price"/> per kilogram. 
         Your total cost is $<value expr="quantity * price"/>. Is that correct?
         Press 1 to confirm, press 2 to return to the quantity menu.
       </prompt>
         <choice dtmf="1" next="#submit"/>
         <choice dtmf="2" next="#quan"/>
   </menu>
+
+
   <form id="submit">
   <block>
       <submit next="http://ict4d.rf.gd/v1.php" method="post" namelist="user quantity product seller price"/>
@@ -158,5 +161,6 @@
   <goto next="#menu"/>
   </block>
   </form>
+
 
 </vxml>
